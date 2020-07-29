@@ -1,7 +1,11 @@
-module Pangram (isPangram) where
-import Data.List
-import Data.Char
+module Pangram
+  ( isPangram
+  )
+where
+import           Data.Char
 
 isPangram :: String -> Bool
-isPangram a = (==) b $ nub $ intersect b $ map toLower a
-  where b = ['a'..'z']
+isPangram text = pangramCompare $ map toLower text
+ where
+  pangramCompare c = onAll $ flip elem c
+  onAll a = all a ['a' .. 'z']
